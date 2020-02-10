@@ -1,0 +1,185 @@
+@mixin btn($font-weight: $btn-font-weight, $border-width: $btn-border-width, $border-color: $btn-border-color, $padding-y: $btn-padding-y, $padding-x: $btn-padding-x, $font-size: $font-size-base, $line-height: $btn-line-height, $border-radius: $btn-border-radius, $transition: $btn-transition, $svg-height: $btn-icon-svg-height, $svg-width: $btn-icon-svg-width, $with-icon: false, $text-margin-left: $btn-icon-text-margin-left)
+  display: inline-block
+  font-weight: $font-weight
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  user-select: none
+  border: $border-width solid $border-color
+  text-decoration: none
+  @include button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius)
+  @include transition($transition)
+
+  // Share hover and focus styles 
+  &:focus
+    outline: 0
+    box-shadow: $btn-focus-box-shadow
+    // color: $btn-text-color
+  
+  // Disabled comes first so active can properly restyle
+  &:disabled, 
+  &.disabled
+    @include state-disabled()
+  
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) 
+    cursor: pointer
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active 
+    @include box-shadow($btn-active-box-shadow)
+
+    &:focus 
+      @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow)
+
+  svg
+    height: $svg-height
+    width: $svg-width
+    position: relative
+    top: 1.5px
+    pointer-events: none
+
+  @if $with-icon
+    & > span
+      &:first-child
+        margin-right: $text-margin-left
+
+      &:last-child
+        margin-left: $text-margin-left
+      
+  
+
+
+
+@mixin btn-sm($padding-y: $btn-padding-y-sm, $padding-x: $btn-padding-x-sm, $font-size: $font-size-sm, $line-height: $btn-line-height-sm, $border-radius: $btn-border-radius-sm)
+  @include button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius)
+
+
+@mixin btn-block($margin-top-next-block: $btn-block-spacing-y)
+  display: block
+  width: 100%
+
+  // Vertically space out multiple block buttons
+  + .btn-block 
+    margin-top: $margin-top-next-block
+
+
+// button outline
+@mixin btn-outline($border-color: $btn-outline-border-color, $border-width: $btn-outline-border-width, $text-color: $btn-outline-text-color, $text-color-hover: $btn-outline-hover-text-color) 
+  color: $text-color
+  background-color: transparent
+  background-image: none
+  border-color: $border-color
+  border-width: $border-width
+  @include hover-focus()
+    background-color: $border-color
+    color: $text-color-hover
+
+  &:active
+    @include state-active()
+
+
+// button icon
+@mixin btn-icon($fill-icon: $btn-icon-color, $padding-y: $btn-icon-padding-y, $padding-x: $btn-icon-padding-x, $svg-height: $btn-icon-svg-height, $svg-width: $btn-icon-svg-width)
+  fill: $fill-icon
+  @include button-size($padding-y, $padding-x, $line-height: $btn-icon-line-height)  
+
+
+// button circle
+@mixin btn-circle($padding: $btn-icon-circle-padding, $border: $btn-icon-border)
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: $padding
+  border: $border
+  line-height: 1
+  
+  &:active
+    transform: translateY(1.5%)
+
+
+// button theme
+@mixin btn-theme($color-text: $white, $fill-icon: $white)
+  background-color: $color-theme
+  color: $color-text
+
+  svg
+    fill: $fill-icon
+  
+  &:active
+    @include state-active()
+
+
+// button only icon
+@mixin btn-only-icon($width: $btn-only-icon-width, $height: $btn-only-icon-height) 
+  cursor: pointer
+  display: inline-block
+  overflow: hidden
+  width: $width
+  height: $height
+
+@mixin btn-fill($fill: $color-icon-main)
+  fill: $fill
+  color: $fill
+  @include hover()
+    @include state-hover-icon()
+
+  &:active
+    svg
+      @include state-active-icon()
+  
+// Button sizes
+@mixin button-size($padding-y: $btn-padding-y, $padding-x: $btn-padding-x, $font-size: $font-size-base, $line-height: $btn-line-height, $border-radius: $border-radius) 
+  padding: $padding-y $padding-x
+  // font-size: $font-size
+  font-size: inherit
+  line-height: $line-height
+  // Manually declare to provide an override to the browser default
+  @include border-radius($border-radius)
+
+
+/// Button group
+@mixin btn-group($border-color: $btn-group-border-color)
+  display: inline-flex
+
+  a,
+  button,
+  div
+    border-radius: 0
+    position: relative
+    flex: 0 1 auto
+    &:first-child
+      @include border-left-radius($border-radius)
+
+    &:last-child
+      @include border-right-radius($border-radius)
+
+    + a,
+    button,
+    div
+      margin-left: -1px
+      border-left: 1px $border-color solid
+
+@mixin btn-group-vertical($border-color: $btn-group-border-color)
+  display: inline-flex
+  flex-direction: column
+
+  a,
+  button,
+  div
+    border-radius: 0
+    position: relative
+    flex: 0 1 auto
+    &:first-child
+      @include border-top-radius($border-radius)
+
+    &:last-child
+      @include border-bottom-radius($border-radius)
+
+    + a,
+    button, 
+    div
+      margin-top: -1px
+      border-top: 1px $border-color solid
+

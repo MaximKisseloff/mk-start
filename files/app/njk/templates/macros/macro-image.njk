@@ -1,0 +1,10 @@
+{# Логотип компании #}
+{% macro company_logo(class, attr, url, style, title) %}
+  <div class="company-logo lozad {{ class }}" data-background-image="{{ url }}" style="{{ style }}" title="{{ title }}" {{ attr }}>
+  </div>
+
+  <noscript>
+    <div class="company-logo lozad {{ class }}" style="background-image: url({{ url }}); {{ style }}" title="{{ title }}" {{ attr }}>
+    </div>
+  </noscript>
+{% endmacro %}

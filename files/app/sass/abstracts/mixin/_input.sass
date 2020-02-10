@@ -1,0 +1,141 @@
+// Inputs
+//
+@mixin input-base($height: $input-height, $padding-y: $input-padding-y, $padding-x: $input-padding-x, $padding-right: $input-padding-right,$font-size: $font-size-base, $line-height: $input-line-height, $color: $input-color, $color-bg: $input-bg, $border-width: $input-border-width, $border-color: $input-border-color, $border-radius: $input-border-radius)
+  display: block
+  width: 100%
+  height: $height
+  padding: $padding-y $padding-right $padding-y $padding-x
+  // font-size: $font-size
+  font-size: inherit
+  line-height: $line-height
+  color: $color
+  background-color: $color-bg
+  background-clip: padding-box
+  border: $border-width solid $border-color
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  @if $enable-rounded 
+    // Manually use the if/else instead of the mixin to account for iOS override
+    border-radius: $border-radius
+  @else 
+    // Otherwise undo the iOS default
+    border-radius: 0
+
+  @include box-shadow($input-box-shadow)
+  @include transition($input-transition)
+
+  // Unstyle the caret on `<select>`s in IE10+.
+  &::-ms-expand 
+    background-color: transparent
+    border: 0
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  @include input-focus()
+
+  // Placeholder
+  @include placeholder()
+    color: $input-placeholder-color
+    // Override Firefox's unusual default opacity see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1
+  
+  // Disabled and read-only inputs
+  &:disabled
+    @include state-disabled()
+
+  
+
+// input-sm
+@mixin input-sm($height: $input-height-sm, $padding-y: $input-padding-y-sm, $padding-x: $input-padding-x-sm, $padding-right: $input-padding-right, $font-size: $font-size-sm, $line-height: $input-line-height-sm, $border-radius: $input-border-radius-sm)
+  padding: $padding-y $padding-right $padding-y $padding-x
+  border-radius: $border-radius
+  line-height: $line-height
+  font-size: $font-size
+  height: $height
+
+
+// input-search
+
+// input-search__input
+@mixin input-search__input($padding-right: $input-search-padding-right)
+  padding-right: $input-search-padding-right
+
+// input-search__icon
+@mixin input-search__icon($right: $input-search-icon-right, $width: $input-search-icon-width)
+  position: absolute
+  top: 0
+  right: $right
+  width: $width
+  padding: 0
+  border: 0
+  height: 100%
+  overflow: hidden
+  background-color: transparent
+  cursor: pointer
+  z-index: 5
+  svg
+    @include btn-only-icon($height: 100%)
+
+
+// Textarea 
+@mixin textarea($height: $textarea-height, $min-height: $textarea-min-height) 
+  min-width: 100%
+  max-width: 100%
+  height: $height 
+  min-height: $min-height
+  max-height: 500px
+
+  &:disabled
+    resize: none
+  
+  
+  
+// Input-size-search  
+@mixin input-size-search($padding-y: $input-btn-padding-y, $padding-left: $input-btn-padding-x, $padding-right: $input-btn-padding-x, $font-size: $font-size-base, $line-height: $input-btn-line-height, $border-radius: $border-radius) 
+  padding: $padding-y $padding-right $padding-y $padding-left
+  font-size: $font-size
+  line-height: $line-height
+  // Manually declare to provide an override to the browser default
+  @if $enable-rounded 
+    border-radius: $border-radius
+  @else 
+    border-radius: 0
+
+
+// Input focus
+@mixin input-focus() 
+  &:not(select):focus 
+    color: $input-focus-color
+    background-color: $input-focus-bg
+    border-color: $input-focus-border-color
+    outline: 0
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows 
+      box-shadow: $input-box-shadow, $input-focus-box-shadow
+    @else
+      box-shadow: $input-focus-box-shadow
+    
+
+@mixin appearance-none()
+  appearance: none
+
+  &::-ms-expand
+    display: none
+
+
+
+// Input line
+@mixin input-line($padding-left: $input-line-padding-left, $border-bottom-width: $input-line-border-bottom-width, $border-bottom-color: $input-line-border-bottom-color) 
+  border: 0
+  outline: none
+  box-shadow: none
+  background: transparent
+  border-radius: 0
+  border-bottom: $border-bottom-width $border-bottom-color solid
+  padding-left: $padding-left
+
+  @include hover-focus()
+    outline: none
+    background-color: transparent
+    box-shadow: none
+    border-bottom: $border-bottom-width $border-bottom-color solid
+

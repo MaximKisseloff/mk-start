@@ -1,0 +1,13 @@
+node_modules/
+.tmp.drivedownload/
+
+.vscode
+yarn.
+yarn.lock
+maket/
+.zip
+.git
+dist/
+Help/
+bash.exe.stackdump
+.idea/

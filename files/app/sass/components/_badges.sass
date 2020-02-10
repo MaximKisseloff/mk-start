@@ -1,0 +1,40 @@
+// Badge
+.badge 
+  @include badge()
+  
+  &-circle
+    @include badge-circle()
+
+  &-big
+    font-size: 100%
+
+
+  &-theme
+    background-color: $color-theme
+    color: $white
+
+  &-red
+    background-color: $radical-red
+    color: $white
+
+  &-green
+    background-color: lighten(#1bb71b, 11%)
+    color: $white
+
+  &-nobel
+    background-color: $nobel
+    color: $white
+
+  &-blue
+    background-color: $iris-blue
+    color: $white
+
+  &-yellow
+    background-color: #caca23
+    color: $white
+    fill: $white
+
+  .btn &,
+  button & 
+    position: relative
+    top: -1px

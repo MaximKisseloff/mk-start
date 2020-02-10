@@ -1,0 +1,29 @@
+{
+  "env": {
+    "jquery": true
+  },
+  "globals": {
+    "document": true,
+    "window": true,
+    "navigator": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": false
+    }
+  },
+  "rules": {
+    "semi": "error",
+    "linebreak-style": 0,
+    "func-names": ["error", "as-needed"],
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "allowForLoopAfterthoughts": true
+  },
+  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ]
+}

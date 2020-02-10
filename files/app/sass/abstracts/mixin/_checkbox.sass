@@ -1,0 +1,74 @@
+// Checkbox
+//
+// checkbox wrapper
+@mixin checkbox($margin-bottom: $checkbox-margin-bottom) 
+  margin-bottom: $margin-bottom
+
+  label
+    position: relative
+    display: flex
+    align-items: center
+
+  &:last-child
+    margin-bottom: 0
+
+
+// checkbox input
+@mixin checkbox__input($block-class-name: $checkbox-block-class-name, $block-hover-color: $checkbox-block-hover-color, $icon-hover-fill: $checkbox-icon-hover-fill, $block-checked-color: $checkbox-block-checked-color, $icon-checked-fill: $checkbox-icon-checked-fill)
+  opacity: 0
+  width: 0
+  height: 0
+  position: absolute
+  
+  &:not(:disabled):not(.disabled):hover ~ #{$block-class-name},
+  &:not(:disabled):not(.disabled):focus ~ #{$block-class-name}
+    @include checkbox-fill($block-hover-color, $icon-hover-fill)
+
+  &:not(:disabled):not(.disabled):checked ~ #{$block-class-name}
+    @include checkbox-fill($block-checked-color, $icon-checked-fill)
+
+  &:disabled ~ *
+    @include state-disabled()
+    
+
+// checkbox block
+@mixin checkbox__block($height: $checkbox-block-height, $width: $checkbox-block-width, $margin-right: $checkbox-block-margin-right, $border-width: $checkbox-block-border-width, $border-color: $checkbox-block-border-color, $border-radius: $checkbox-block-border-radius, $transition: $checkbox-block-transition)
+  height: $height
+  width: $width
+  min-width: $width
+  position: relative
+  // top: 3px
+  // display: inline-block
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-right: $margin-right
+  border: $border-width $border-color solid
+  cursor: pointer
+  background-color: $white
+  @include border-radius()
+  @include transition($transition)
+
+
+// checkbox icon
+@mixin checkbox__icon($height: $checkbox-icon-height, $width: $checkbox-icon-width)
+  display: none
+  height: $height
+  width: $width
+  // position: absolute
+  // top: 2px
+  // left: 2px
+
+
+// checkbox text
+@mixin checkbox__text($font-size: $checkbox-text-font-size)
+  vertical-align: baseline
+  cursor: pointer
+
+
+// background color and icon fill in the hover or checked 
+@mixin checkbox-fill($background-color, $fill, $icon-class-name: $checkbox-icon-class-name)
+  background-color: $background-color
+  #{$icon-class-name}
+    display: block
+    fill: $fill

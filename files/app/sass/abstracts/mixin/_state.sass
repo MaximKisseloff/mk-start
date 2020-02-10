@@ -1,0 +1,19 @@
+// State components
+@mixin state-hover($color-accent: $color-theme) 
+  background-color: $color-theme-2
+
+@mixin state-hover-icon($color-accent: $color-theme) 
+  fill: mix($true-black, $color-accent, 8%)
+
+@mixin state-active ($color-accent: $color-theme)
+  background: mix($true-black, $color-accent, 12%)
+  box-shadow: $shadow-inset
+
+@mixin state-active-icon ($color-accent: $color-theme)
+  fill: mix($true-black, $color-accent, 15%)
+
+@mixin state-disabled()
+  opacity: $opacity-bg-disabled
+  cursor: default
+  pointer-events: none
+  user-select: none

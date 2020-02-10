@@ -1,0 +1,85 @@
+html
+  box-sizing: border-box
+  height: 100%
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-font-smoothing: antialiased
+
+*,
+*::after,
+*::before
+  box-sizing: inherit
+
+html,
+body
+  font-size: $font-size-base-px
+
+body
+  line-height: $line-height-base
+  font-family: $font-family-sans-serif
+  color: $body-color
+  height: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  background-color: $body-bg
+  overflow-x: hidden
+  
+
+a, 
+.link
+  color: $link-color
+  text-decoration: $link-decoration
+
+  &:hover,
+  &:active
+    color: $link-hover-color
+    text-decoration: $link-hover-decoration
+
+img
+  max-width: 100%
+
+input::-ms-clear,
+input::-ms-reveal
+  display: none
+  width: 0
+  height: 0
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration
+  display: none
+
+input:not([type="checkbox"]),
+input:not([type="select"])
+  -webkit-appearance: none
+
+input,
+textarea,
+button,
+select
+  font-family: inherit
+
+button
+  @include hover-focus()
+    outline: 0
+
+button:disabled,
+a:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled,
+[role=button]:disabled
+  @include state-disabled()
+
+.svg-sprite
+  display: none
+
+  
+// Media
+@include screen-xs-max()
+  html,
+  body
+    font-size: $font-size-sm

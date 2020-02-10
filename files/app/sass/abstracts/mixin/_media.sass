@@ -1,0 +1,42 @@
+// Media screen
+
+// Max-width
+//
+// screen-lg max-width
+@mixin screen-lg-max()
+  @media screen and (max-width: $screen-lg)
+    @content
+
+// screen-md max-width
+@mixin screen-md-max()
+  @media screen and (max-width: $screen-md)
+    @content
+
+// screen-sm max-width
+@mixin screen-sm-max()
+  @media screen and (max-width: $screen-sm)
+    @content
+
+// screen-xs max-width
+@mixin screen-xs-max()
+  @media screen and (max-width: $screen-xs)
+    @content
+
+// screen-super-xs max-width
+@mixin screen-super-xs-max()
+  @media screen and (max-width: $screen-super-xs)
+    @content
+
+
+// Min-width
+//
+// screen-sm min-width
+@mixin screen-sm-min()
+  @media screen and (min-width: $screen-sm)
+    @content
+
+
+// Support hover
+@mixin support-hover()
+  @media (hover), (min-width:0\0), (min--moz-device-pixel-ratio:0)
+    @content

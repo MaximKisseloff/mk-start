@@ -1,0 +1,21 @@
+.segmented-control
+  @include segment-control()
+
+  &__item
+    @include segment-control__item()
+
+  &__label
+    @include segment-control__label()
+
+  &__item_divided
+    margin-right: 1rem
+
+    &:last-child
+      margin-right: 0
+      
+    label
+      @include border-radius($border-radius)
+
+  
+    
+

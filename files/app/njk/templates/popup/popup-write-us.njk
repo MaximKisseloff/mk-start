@@ -1,0 +1,25 @@
+{% set popup_title = 'Написать нам' %}
+
+{% from "macros/macro-button.njk" import button, button_icon_inline %}
+{% from "macros/macro-switch.njk" import checkbox, radiobutton, segmented_control_item %}
+
+{% block content %}
+  <div class="modal micromodal-slide" id="modal-write" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close="data-micromodal-close" data-custom-close="data-custom-close">
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-write">
+        <div class="modal__header">
+          <h4>
+            {{ popup_title }}
+          </h4>
+          <a href="#" class="modal__close" aria-label="close" title="Закрыть" data-custom-close="data-custom-close">&times;</a>
+        </div>
+
+        <div class="modal__content" id="write-content">
+          <form class="form">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+// Breadcrumbs
+@mixin breadcrumb($padding-y: $breadcrumb-padding-y, $padding-x: $breadcrumb-padding-x, $bg-color: $breadcrumb-bg, $margin-bottom: $breadcrumb-margin-bottom, $border-radius: $breadcrumb-border-radius)
+  padding: $padding-y $padding-x
+  margin-bottom: $margin-bottom
+  list-style: none
+  background-color: $bg-color
+  @include border-radius($border-radius)
+  @include text-one-line()
+
+@mixin breadcrumb__item($item-class-name: $breadcrumb-item-class-name, $padding: $breadcrumb-item-padding, $divider: $breadcrumb-divider, $divider-color: $breadcrumb-divider-color, $active-color: $breadcrumb-active-color)
+  display: inline
+  + #{$item-class-name}
+    padding-left: $padding
+
+    &::before 
+      display: inline-block 
+      padding-right: $padding
+      color: $divider-color
+      content: $divider
+  
+  + #{$item-class-name}:hover::before
+    text-decoration: underline
+  
+  + #{$item-class-name}:hover::before 
+    text-decoration: none
+  
+
+  &.active 
+    color: $active-color
+  
+

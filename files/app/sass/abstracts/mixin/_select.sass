@@ -1,0 +1,37 @@
+@mixin select($placeholder-color: $input-placeholder-color)
+  max-width: 100%
+  @include text-one-line()
+  position: relative
+  padding-right: 0
+  
+  &::after 
+    position: absolute
+    width: 0
+    height: 0
+    top: 50%
+    right: 0.75rem
+    border-width: $custom-select-triangle-border-width
+    border-bottom-width: 0
+    border-style: solid
+    border-color: currentColor transparent
+    transform: translateY(-50%)
+    content: ""
+
+  select
+    padding-right: 2rem
+    
+    option[disabled]:first-child
+      color: $input-placeholder-color
+
+    &:focus::-ms-value
+      // Suppress the nested default white text on blue background highlight given to
+      // the selected option text when the (still closed) <select> receives focus
+      // in IE and (under certain conditions) Edge, as it looks bad and cannot be made to
+      // match the appearance of the native widget.
+      // See https://github.com/twbs/bootstrap/issues/19398.
+      color: $color-text-main
+      background-color: $white
+
+    @include appearance-none()
+
+  

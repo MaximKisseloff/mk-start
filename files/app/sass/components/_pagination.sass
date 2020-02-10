@@ -1,0 +1,14 @@
+.pagination 
+  @include pagination()
+
+  &__link
+    @include pagination__link()
+
+  &__item
+    @include pagination__item()
+  
+  &-sm 
+    @include pagination-sm()
+
+  &__item-divided
+    @include pagination__item($divided: true)

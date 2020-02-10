@@ -1,0 +1,34 @@
+// Segmented control
+//
+// segment-control wrapper  
+@mixin segment-control()
+  display: flex
+
+// segment-control__item
+@mixin segment-control__item($margin-right: $segment-control-item-margin-right, $active-color: $segment-control-active-color, $active-fill: $segment-control-active-fill)
+  input
+    display: none
+    
+    &:checked ~ label
+      @include state-active()
+      color: $active-color
+      fill: $active-fill
+
+  &:first-child
+
+    label
+      @include border-left-radius($border-radius)
+
+  &:last-child
+
+    label
+      @include border-right-radius($border-radius)
+
+  margin-right: 0
+  
+// segment-control__label
+@mixin segment-control__label($bg-color: $segment-control-label-bg, $margin-right: $segment-control-item-margin-right)
+  background-color: $bg-color
+  margin-right: 0
+  border-radius: 0
+ 

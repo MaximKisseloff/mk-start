@@ -1,0 +1,43 @@
+// My mark (rating star) 
+.rating
+  overflow: hidden
+  position: relative
+  float: left
+  
+  svg 
+    margin-right: 3px
+    height: 1.5rem
+    width: 1.5rem
+
+  input 
+    opacity: 0
+    position: absolute
+    top: 0
+    z-index: 0
+
+  input ~ label
+    fill: $whisper
+
+  input:checked ~ label
+    fill: $color-theme-2
+
+  label 
+    float: right
+    cursor: pointer
+    position: relative
+    z-index: 1
+
+    &:hover,
+    &:hover ~ label
+      fill: $color-theme-2
+
+
+// Media
+@include support-hover()
+  .rating
+
+    input:checked ~ label
+      
+      @include hover-focus()
+        fill: lighten($color-theme-2, 10%)
+    

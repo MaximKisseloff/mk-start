@@ -1,0 +1,24 @@
+// Badges
+//
+@mixin badge($padding-y: $badge-padding-y, $padding-x: $badge-padding-x, $font-size: $badge-font-size, $font-weight: $badge-font-weight, $border-radius: $badge-border-radius)
+  display: inline-block
+  padding: $padding-y $padding-x
+  font-size: $font-size
+  font-weight: $font-weight
+  line-height: 1
+  text-align: center
+  white-space: nowrap
+  vertical-align: baseline
+  @include border-radius($border-radius)
+  // height: 100%
+  &:empty 
+    display: none
+
+
+@mixin badge-circle($height: $badge-circle-height, $width: $badge-circle-width)
+  height: $height
+  width: $width
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  @include border-radius(50%)

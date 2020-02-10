@@ -1,0 +1,14 @@
+{
+  "name": "mk-start",
+  "version": "1.0.0",
+  "author": "Maxim Kisseloff <maxoonix@gmail.com>",
+  "license": "MIT",
+  "description": "Project start template. Technologies used: Gulp, Webpack, Nunjucks, ES6, SASS, Babel, ESlint, stylelint",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  }
+}

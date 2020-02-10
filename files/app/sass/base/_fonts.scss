@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: $font-display;
+  font-weight: 400;
+  @include fontdef($type: "Regular");
+}

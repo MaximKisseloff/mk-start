@@ -1,0 +1,55 @@
+{# Checbox #}
+{% macro checkbox(class, class_label, for_label, name_input, class_input, attr_input, class_svg, value_input, text, svg_name, icon=true) %}
+  <div class="checkbox {{ class }}">
+    <label for="{{ for_label }}" class="checkbox__label {{ class_label }}">
+      <input type="checkbox" name="{{ name_input }}" id="{{ for_label }}" class="checkbox__input {{ class_input }}" value="{{ value_input }}" {{ attr_input }}>
+      <span class="checkbox__block">
+        {% if(icon == true) %}
+          <svg class="checkbox__icon {{ class_svg }}">
+            <use xlink:href="#{{ svg_name }}" />
+          </svg>
+        {% endif %}
+      </span>
+      <span class="checkbox__text {{ class_span }}">
+        {{ text | safe }}
+      </span>
+    </label>
+  </div>
+{% endmacro %}
+
+
+{# Radiobutton #}
+{% macro radiobutton(class, class_label, for_label, name_input, class_input, value_input, attr_input, class_svg, text, svg_name, icon=true) %}
+  <div class="radiobutton {{ class }}">
+    <label for="{{ for_label }}" class="radiobutton__label {{ class_label }}">
+      <input type="radio" name="{{ name_input }}" id="{{ for_label }}" class="radiobutton__input {{ class_input }}" value="{{ value_input }}" {{ attr_input }}>
+      <span class="radiobutton__block">
+        {% if(icon == true) %}
+          <svg class="radiobutton__icon {{ class_svg }}">
+            <use xlink:href="#{{ svg_name }}" />
+          </svg>
+        {% endif %}
+      </span>
+      <span class="radiobutton__text {{ class_span }}">
+        {{ text | safe }}
+      </span>
+    </label>
+  </div>
+{% endmacro %}
+
+
+{# Segmented-control__item #}
+{% macro segmented_control_item(class_li, class_label, for_label, attr_input, value_input, name_input, svg_name, class_svg, text, title, type="radio", icon=false) %}
+  <li class="segmented-control__item {{ class_li }}">
+    <input class="segmented-control__input" id="{{ for_label }}" type="{{ type }}" value="{{ value_input }}" name="{{ name_input }}" {{ attr_input }}>
+    <label class="segmented-control__label btn {{ class_label }}" for="{{ for_label }}">
+      {% if(icon == true) %}
+        <svg class="svg-icon {{ class_svg }}">
+          <use xlink:href="#{{ svg_name }}" />
+        </svg>
+      {% endif %}
+
+      {{ text | safe }}
+    </label>
+  </li>
+{% endmacro %}

@@ -1,0 +1,106 @@
+// Pagination
+// pagination size
+@mixin pagination-size($padding-y, $padding-x, $font-size, $line-height, $border-radius, $link-class-name: $pagination-link-class-name, $item-class-name: $pagination-item-class-name) 
+  #{$link-class-name}
+    padding: $padding-y $padding-x
+    font-size: $font-size
+    line-height: $line-height
+  
+  #{$item-class-name} 
+    &:first-child 
+      #{$link-class-name} 
+        @include border-left-radius($border-radius)
+      
+    &:last-child 
+      #{$link-class-name}
+        @include border-right-radius($border-radius)
+      
+    
+// pagination wrapper
+@mixin pagination()
+  display: inline-flex
+  padding-left: 0
+  list-style: none
+  @include border-radius()
+
+  svg
+    fill: $pagination-icon-fill
+    margin-top: $pagination-icon-margin-top
+    height: $pagination-icon-height
+    width: $pagination-icon-width
+
+
+@mixin pagination__link($padding-y: $pagination-padding-y, $padding-x: $pagination-padding-x, $line-height: $pagination-line-height, $color: $pagination-color, $bg-color: $pagination-bg, $border-width: $pagination-border-width, $border-color: $pagination-border-color, $hover-color: $pagination-hover-color, $hover-bg: $pagination-hover-bg, $hover-border-color: $pagination-hover-border-color, $focus-outline: $pagination-focus-outline, $focus-box-shadow: $pagination-focus-box-shadow)
+  position: relative
+  display: block
+  padding: $padding-y $padding-x
+  margin-left: -$pagination-border-width
+  line-height: $line-height
+  color: $color
+  background-color: $bg-color
+  border: $border-width solid $border-color
+  
+  @include support-hover()
+  
+    &:hover 
+      z-index: 2
+      color: $hover-color
+      text-decoration: none
+      background-color: $hover-bg
+      border-color: $hover-border-color
+
+      svg
+        fill: $pagination-icon-hover-fill
+    
+  &:focus 
+    z-index: 2
+    outline: $focus-outline
+    box-shadow: $focus-box-shadow
+
+  // Opinionated: add "hand" cursor to non-disabled .page-link elements
+  &:not(:disabled):not(.disabled) 
+    cursor: pointer    
+
+  
+
+
+@mixin pagination__item($link-class-name: $pagination-link-class-name, $divided: $pagination-item-divided, $active-color: $pagination-active-color, $active-bg-color: $pagination-active-bg, $active-border-color: $pagination-active-border-color, $margin-right: $pagination-item-margin-right)
+  &:first-child 
+    #{$link-class-name}
+      margin-left: 0
+      @include border-left-radius($border-radius)
+    
+  &:last-child 
+    #{$link-class-name}
+      @include border-right-radius($border-radius)
+
+  &.active #{$link-class-name} 
+    z-index: 1
+    color: $active-color
+    background-color: $active-bg-color
+    border-color: $active-border-color
+
+  &.disabled #{$link-class-name}
+    // color: $pagination-disabled-color
+    // background-color: $pagination-disabled-bg
+    // border-color: $pagination-disabled-border-color
+    @include state-disabled()
+
+  @if $divided
+    margin-right: $margin-right
+    
+    #{$link-class-name}
+      @include border-radius()
+
+    &:last-child
+      margin-right: 0
+  @else
+    margin-right: 0
+  
+
+@mixin pagination-sm()
+  @include pagination-size($pagination-padding-y-sm, $pagination-padding-x-sm, $font-size-sm, $line-height-sm, $border-radius-sm)
+
+  svg
+    height: $pagination-icon-height-sm
+    width: $pagination-icon-width-sm

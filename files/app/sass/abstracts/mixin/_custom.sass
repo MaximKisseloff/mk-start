@@ -1,0 +1,59 @@
+// Background-image
+@mixin bg-image($url, $x: center, $y: center, $rep: no-repeat, $size: contain)
+  background-image: url($url)
+  background-position: $x $y
+  background-repeat: $rep
+  background-size: $size
+
+
+// Placeholder
+@mixin placeholder
+  &::-webkit-input-placeholder  
+    @content
+  &:-moz-placeholder            
+    @content 
+  &::-moz-placeholder           
+    @content
+  &:-ms-input-placeholder      
+    @content
+
+
+// Text in one line
+@mixin text-one-line
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+
+// Center-alignment
+@mixin center-alignment
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+
+// Add fonts
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff ttf svg)
+  $src: null
+
+  $extmods: (eot: "?", svg: "#" + str-replace($name, " ", "_"))
+
+  $formats: (otf: "opentype", ttf: "truetype")
+
+  @each $ext in $exts 
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext)
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext)
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma)
+
+  @font-face 
+    font-family: quote($name)
+    font-style: $style
+    font-weight: $weight
+    src: $src
+
+
+// PX to REM
+@mixin font-size-px-rem($font-size, $base: $font-size-base-px)
+  font-size: $font-size
+  font-size: px-rem($font-size, $base)
+

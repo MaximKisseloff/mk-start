@@ -1,0 +1,80 @@
+{# Простая кнопка #}
+{% macro button(class, attr_button, title, text="Кнопка", type="button") %}
+  <button class="btn {{ class }}" title="{% if(title) %} {{ title }} {% else %} {{ text }} {% endif %}" type="{{ type }}" {{ attr_button }}>
+    {{ text | safe }}
+  </button>
+{% endmacro %}
+
+
+{# Простая кнопка ссылка #}
+{% macro button_link(class, href="#", attr_button, title, text="Кнопка-ссылка") %}
+  <a class="btn {{ class }}" href="{{ href }}" title="{% if(title) %} {{ title }} {% else %} {{ text }} {% endif %}" role="link" {{ attr_button }}>
+    {{ text | safe }}
+  </a>
+{% endmacro %}
+
+
+{# Кнопка с иконкой #}
+{% macro button_icon_inline(class_button, class_svg, svg_name, svg_viewBox, class_span, attr_button, direction_span="right", title, text="Кнопка с иконкой", type="button") %}
+  <button class="btn-icon-inline {{ class_button }}"  title="{% if(title) %} {{ title }} {% else %} {{ text }} {% endif %}" type="{{ type }}" {{ attr_button }}>
+    {% if(direction_span) == 'left' %}
+      {% if(text) !== '' %}
+        <span class="btn__text {{ class_span }}">{{ text | safe }}</span>
+      {% endif %}
+    {% endif %}
+
+    <svg class="btn__icon {{ class_svg }}" {% if(svg_viewBox) %} viewBox="{{ svg_viewBox }}" {% endif %}>
+      <use xlink:href="#{{ svg_name }}" />
+    </svg>
+
+    {% if(direction_span) == 'right' %}
+      {% if(text) !== '' %}
+        <span class="btn__text {{ class_span }}">{{ text | safe }}</span>
+      {% endif %}
+    {% endif %}
+  </button>
+{% endmacro %}
+
+
+{# Кнопка-ссылка с иконкой #}
+{% macro button_link_icon_inline(class_button, class_svg, svg_name, href="#", class_span, direction_span="right", attr_button, title, svg_viewBox, text="Кнопка-ссылка с иконкой") %}
+  <a class="btn-icon-inline {{ class_button }}" href="{{ href }}" title="{% if(title) %} {{ title }} {% else %} {{ text }} {% endif %}" role="link" {{ attr_button }}>
+    {% if(direction_span) == 'left' %}
+      {% if(text) !== '' %}
+        <span class="btn__text {{ class_span }}">{{ text | safe }}</span>
+      {% endif%}
+    {% endif %}
+
+    <svg class="btn__icon {{ class_svg }}" {% if(svg_viewBox) %} viewBox="{{ svg_viewBox }}" {% endif %}>
+      <use xlink:href="#{{ svg_name }}" />
+    </svg>
+
+    {% if(direction_span) == 'right' %}
+      {% if(text) !== '' %}
+        <span class="btn__text {{ class_span }}">{{ text | safe }}</span>
+      {% endif%}
+    {% endif %}
+  </a>
+{% endmacro %}
+
+
+{# Кнопка загрузки файла #}
+{% macro input_file(class_button, class_label, class_span, attr_button, for_label="file-load", name_input, title, text="Выберите файл") %}
+  <div class="input-file {{ class_button }}" {{ attr_button }} title="{% if(title) %} {{ title }} {% else %} {{ text }} {% endif %}" role="button">
+    <label class="input-file__label btn btn-theme {{ class_label }}" for="{{ for_label }}">
+      <span class="btn__text {{ class_span }}">{{ text | safe }}</span>
+    </label>
+    <input type="file" id="{{ for_label }}" name="{{ name_input }}">
+    <span class="input-file__text"></span>
+  </div>
+{% endmacro %}
+
+
+{# Кнопка-иконка #}
+{% macro button_icon(class_button, attr_button, class_svg, svg_name, svg_viewBox, title, type="button") %}
+  <button class="btn btn-icon {{ class_button }}" type="{{ type }}" title="{{ title }}" {{ attr_button }}>
+    <svg class="btn__icon {{ class_svg }}" {% if(svg_viewBox) %} viewBox="{{ svg_viewBox }}" {% endif %}>
+      <use xlink:href="#{{ svg_name }}" />
+    </svg>
+  </button>
+{% endmacro %}

@@ -1,0 +1,11 @@
+@mixin stars($icon-width: $stars-icon-width, $icon-height: $stars-icon-height, $icon-margin-right: $stars-icon-margin-right, $icon-fill: $stars-icon-fill)
+  display: inline-flex
+  fill: $icon-fill
+  
+  svg
+    width: $icon-width
+    height: $icon-height
+    margin-right: $icon-margin-right
+
+    &:last-child
+      margin-right: 0
