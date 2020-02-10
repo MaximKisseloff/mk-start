@@ -31,8 +31,8 @@ const config = {
 
   // JavaScript
   js: `${basePath.build}/js`,
-  jsModules: `${basePath.src}/js-modules`,
-  jsMainFile: 'bundle.js',
+  jsModules: `${basePath.src}/js`,
+  jsMainFile: 'base.js',
 
   // Image
   img: `${basePath.src}/img`,

@@ -222,9 +222,6 @@ function transfers(cb) {
   // Fonts
   transfer(`${config.fonts}/**/*`, `${config.basePathBuild}/fonts`);
 
-  // Autodevelop
-  // transfer(config.basePathSrc + '/php/autodevelop.php', config.basePathBuild);
-
   cb();
 }
 
