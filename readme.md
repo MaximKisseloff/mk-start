@@ -2,7 +2,7 @@
 
 ## Setup
 ```sh
-yarn add mk-saytum-start
+yarn add mk-start
 ```
 
 All files are copied to the folder where the script is running.
