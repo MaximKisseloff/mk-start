@@ -5,6 +5,12 @@
   "license": "MIT",
   "description": "Project start template. Technologies used: Gulp, Webpack, Nunjucks, ES6, SASS, Babel, ESlint, stylelint",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MaximKisseloff/mk-start"
+  },
+  "keywords": ["template", "start", "webpack", "gulp", "nunjucks"],
+  "homepage": "https://github.com/MaximKisseloff/mk-start",
   "scripts": {
     "postinstall": "node index.js"
   },
